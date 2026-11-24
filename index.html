@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><title>Конвертер валют</title>
+<style>
+body{font-family:system-ui;display:flex;justify-content:center;padding:40px;background:#f4f6fb}
+.box{background:#fff;padding:24px;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.1);width:320px}
+input,select{width:100%;padding:10px;margin-bottom:12px;border:1px solid #dfe4ee;border-radius:8px;font-size:1rem}
+button{width:100%;padding:12px;background:#3b5bdb;color:#fff;border:none;border-radius:8px;font-size:1rem;cursor:pointer}
+#out{font-size:1.4rem;font-weight:700;margin-top:14px;text-align:center;min-height:30px}
+</style></head><body>
+<div class="box">
+  <h3>Конвертер валют</h3>
+  <input id="amount" placeholder="Сумма" type="text">
+  <select id="from"><option>USD</option><option>EUR</option><option>RUB</option></select>
+  <select id="to"><option>EUR</option><option>USD</option><option>RUB</option></select>
+  <button onclick="convert()">Конвертировать</button>
+  <div id="out"></div>
+</div>
+<script>
+const rates = { USD:1, EUR:0.92, RUB:92 };
+function convert(){
+  const amt = parseFloat(document.getElementById('amount').value);
+  const from = document.getElementById('from').value;
+  const to = document.getElementById('to').value;
+  const res = amt * rates[to] / rates[from];
+  document.getElementById('out').textContent = res.toFixed(2) + ' ' + to;
+}
+</script>
+</body></html>
